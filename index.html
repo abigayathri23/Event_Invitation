@@ -12,9 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-E/VhXwD6xw7b5p6FQvFv2Vd6w0e0yPZf2t6oVYtqg0S6+XyQf6V6Wm5YxJxYbqzqI2PGCw4j1xZb3b2FQG3QJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    /* ===================
-       Base / Theme
-    =================== */
     :root {
       --bg: #faf8f6;
       --bg-elev: #ffffff;
@@ -55,10 +52,6 @@
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     .container { width: min(1100px, 92vw); margin: 0 auto; }
-
-    /* ===================
-       Header / Hero
-    =================== */
     header.hero {
       position: relative;
       overflow: clip;
@@ -97,10 +90,6 @@
     .meta i { width: 22px; text-align: center; }
 
     .cta-row { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
-
-    /* ===================
-       Sections
-    =================== */
     section { padding: 60px 0; }
     .card {
       background: var(--card);
@@ -115,13 +104,9 @@
 
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 14px; }
     .muted { color: var(--muted); }
-
-    /* Agenda */
     .agenda { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .agenda .item { border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 12px; background: var(--bg-elev); }
     @media (max-width: 800px) { .agenda { grid-template-columns: 1fr; } }
-
-    /* RSVP */
     form.rsvp { display: grid; gap: 12px; }
     .row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
     @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
@@ -131,15 +116,9 @@
     }
     input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent); }
     label { font-weight: 600; font-size: .95rem; }
-
-    /* Map */
     .map-wrap { overflow: clip; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
     .map-wrap iframe { display: block; width: 100%; height: 320px; border: 0; }
-
-    /* Footer */
     footer { padding: 44px 0 60px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
-
-    /* Countdown */
     .countdown {
       display: grid; grid-auto-flow: column; gap: 12px; align-items: center; justify-content: start; flex-wrap: wrap;
     }
@@ -149,14 +128,10 @@
     }
     .timebox .num { font-size: 1.6rem; font-weight: 700; }
     .timebox .lbl { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-
-    /* Fancy details */
     .chip { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-elev); border: 1px solid var(--border); padding: 8px 12px; border-radius: 999px; font-weight: 600; }
     .chip i { color: var(--primary); }
     .hover-raise { transition: transform .18s ease; }
     .hover-raise:hover { transform: translateY(-3px); }
-
-    /* Confetti (simple CSS burst) */
     .confetti { position: fixed; pointer-events: none; inset: 0; overflow: hidden; z-index: 9999; }
     .confetti span { position: absolute; width: 8px; height: 14px; border-radius: 2px; opacity: 0; animation: drop 1200ms ease-out forwards; }
     @keyframes drop {
@@ -164,15 +139,12 @@
       10% { opacity: 1; }
       100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
     }
-
-    /* Audio prompt */
     .audio-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; backdrop-filter: blur(6px); }
     .audio-bar button { border-radius: 999px; padding: 10px 14px; }
 
   </style>
 </head>
 <body>
-  <!-- Theme root wrapper for toggling -->
   <div id="app" data-theme="light">
 
     <header class="hero" role="banner">
@@ -217,14 +189,12 @@
           </div>
         </div>
         <audio id="bgm" preload="auto">
-          <!-- Replace with your music file -->
           <source src="https://cdn.pixabay.com/download/audio/2023/09/12/audio_5b7e0a60b1.mp3?filename=summer-ambient-164904.mp3" type="audio/mpeg" />
         </audio>
       </div>
     </header>
 
     <main>
-      <!-- About / Description -->
       <section id="about">
         <div class="container grid-2">
           <article class="card">
@@ -251,8 +221,6 @@
           </aside>
         </div>
       </section>
-
-      <!-- Agenda -->
       <section id="agenda">
         <div class="container">
           <h2 class="section-title">Agenda</h2>
@@ -266,15 +234,12 @@
           </div>
         </div>
       </section>
-
-      <!-- Location -->
       <section id="location">
         <div class="container grid-2">
           <div class="card">
             <h2 class="section-title">Venue & Map</h2>
             <p class="muted">Skyview Terrace, 5th Avenue, Chennai, Tamil Nadu</p>
             <div class="map-wrap hover-raise">
-              <!-- Replace the src with your actual venue coordinates/place ID -->
               <iframe title="Google Map" loading="lazy" allowfullscreen
                 referrerpolicy="no-referrer-when-downgrade"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0162738112204!2d80.24327357510119!3d12.97024228733764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267f4b4a4a9f1%3A0x9e6b31b0dd1a4e6c!2sSky%20Garden!5e0!3m2!1sen!2sin!4v1699999999999"></iframe>
@@ -288,8 +253,6 @@
           </div>
         </div>
       </section>
-
-      <!-- RSVP -->
       <section id="rsvp">
         <div class="container grid-2">
           <div class="card">
@@ -354,15 +317,10 @@
         <p>© <span id="year"></span> Abi's Celebration • Built with HTML, CSS & JS • <a href="#" id="shareLink">Share Invite</a></p>
       </div>
     </footer>
-
-    <!-- Confetti container -->
     <div class="confetti" id="confetti" aria-hidden="true"></div>
   </div>
 
   <script>
-    // ===============
-    // Theme Switcher
-    // ===============
     const root = document.getElementById('app');
     const toggleBtn = document.getElementById('themeToggle');
     toggleBtn.addEventListener('click', () => {
@@ -371,12 +329,8 @@
       toggleBtn.setAttribute('aria-pressed', String(next === 'dark'));
     });
 
-    // ===============
-    // Countdown Timer
-    // Set your event date/time here (local time)
-    // ===============
     const countdownEl = document.getElementById('countdown');
-    const eventDate = new Date('2025-10-15T18:30:00+05:30'); // 15 Oct 2025, 6:30 PM IST
+    const eventDate = new Date('2026-05-23T18:30:00+05:30'); // 15 Oct 2025, 6:30 PM IST
 
     function pad(n){ return String(n).padStart(2,'0'); }
 
@@ -405,29 +359,23 @@
     }
     const timer = setInterval(tick, 1000); tick();
 
-    // ===============
-    // RSVP Handler (non-backend)
-    // ===============
+   
     const statusEl = document.getElementById('rsvpStatus');
     function handleRSVP(e) {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.currentTarget).entries());
       statusEl.textContent = 'Sending…';
 
-      // Simulate sending + show confetti
       setTimeout(() => {
         statusEl.textContent = `Thanks, ${data.name}! We\'ve noted your RSVP (${data.attendance}). A confirmation email will follow.`;
         launchConfetti();
-        // Optional: Also open mail client pre-filled
         const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nGuests: ${data.guests}\nAttendance: ${data.attendance}\nMessage: ${data.message || ''}`);
         window.open(`mailto:abi@example.com?subject=RSVP%20-%20Abi%27s%20Birthday&body=${body}`, '_blank');
         e.currentTarget.reset();
       }, 700);
     }
 
-    // ===============
-    // Lightweight Confetti (CSS‑driven)
-    // ===============
+
     const confetti = document.getElementById('confetti');
     function rand(min, max) { return Math.random() * (max - min) + min; }
     function launchConfetti() {
@@ -444,10 +392,6 @@
         setTimeout(() => piece.remove(), 1800);
       }
     }
-
-    // ===============
-    // Background Music (requires user gesture)
-    // ===============
     const playBtn = document.getElementById('playMusic');
     const audio = document.getElementById('bgm');
     let playing = false;
@@ -457,10 +401,6 @@
         else { audio.pause(); playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; playing = false; }
       } catch (e) { console.warn('Audio play blocked:', e); }
     });
-
-    // ===============
-    // Share (Web Share API fallback)
-    // ===============
     const shareLink = document.getElementById('shareLink');
     shareLink.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -472,8 +412,6 @@
         alert('Invite link copied to clipboard!');
       }
     });
-
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
