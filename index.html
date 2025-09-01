@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>✨ Event Invitation – Celebrate With Us!</title>
+  <meta name="description" content="A stylish and responsive event invitation landing page with RSVP, countdown, theme switch, and more." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (Icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-E/VhXwD6xw7b5p6FQvFv2Vd6w0e0yPZf2t6oVYtqg0S6+XyQf6V6Wm5YxJxYbqzqI2PGCw4j1xZb3b2FQG3QJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ===================
+       Base / Theme
+    =================== */
+    :root {
+      --bg: #faf8f6;
+      --bg-elev: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b7280; /* gray-500 */
+      --primary: #6c5ce7; /* violet */
+      --primary-contrast: #ffffff;
+      --accent: #ffb703; /* warm accent */
+      --card: #e4dbdb;
+      --border: #e5e7eb; /* gray-200 */
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0b0f;
+      --bg-elev: #121218;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --primary: #7c3aed;
+      --primary-contrast: #ffffff;
+      --accent: #22d3ee;
+      --card: #141420;
+      --border: #1f2937;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* ===================
+       Header / Hero
+    =================== */
+    header.hero {
+      position: relative;
+      overflow: clip;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.25)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop') center/cover;
+      color: #fff;
+      min-height: 70vh;
+      display: grid;
+      align-items: end;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar {
+      position: absolute; inset: 0 0 auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 4vw;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), transparent);
+    }
+    .brand { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: .5px; }
+
+    .actions { display: flex; gap: 10px; }
+    .btn, button.btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 18px; border-radius: var(--radius);
+      border: 1px solid transparent; cursor: pointer; font-weight: 600;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--primary-contrast); box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+
+    .hero-content { padding: 18vh 4vw 8vh; }
+    .kicker { letter-spacing: .18em; text-transform: uppercase; opacity: .9; font-size: .85rem; }
+    h1.title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin: 10px 0 14px; }
+    .meta { display: grid; gap: 10px; font-size: 1rem; }
+    .meta i { width: 22px; text-align: center; }
+
+    .cta-row { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+
+    /* ===================
+       Sections
+    =================== */
+    section { padding: 60px 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 2.5vw, 28px);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(18px, 3vw, 28px); }
+    @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 14px; }
+    .muted { color: var(--muted); }
+
+    /* Agenda */
+    .agenda { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .agenda .item { border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 12px; background: var(--bg-elev); }
+    @media (max-width: 800px) { .agenda { grid-template-columns: 1fr; } }
+
+    /* RSVP */
+    form.rsvp { display: grid; gap: 12px; }
+    .row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    input, select, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text);
+      outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent); }
+    label { font-weight: 600; font-size: .95rem; }
+
+    /* Map */
+    .map-wrap { overflow: clip; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .map-wrap iframe { display: block; width: 100%; height: 320px; border: 0; }
+
+    /* Footer */
+    footer { padding: 44px 0 60px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
+
+    /* Countdown */
+    .countdown {
+      display: grid; grid-auto-flow: column; gap: 12px; align-items: center; justify-content: start; flex-wrap: wrap;
+    }
+    .timebox {
+      min-width: 88px; text-align: center; background: var(--bg-elev); border: 1px solid var(--border);
+      padding: 12px; border-radius: 14px; box-shadow: var(--shadow);
+    }
+    .timebox .num { font-size: 1.6rem; font-weight: 700; }
+    .timebox .lbl { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+    /* Fancy details */
+    .chip { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-elev); border: 1px solid var(--border); padding: 8px 12px; border-radius: 999px; font-weight: 600; }
+    .chip i { color: var(--primary); }
+    .hover-raise { transition: transform .18s ease; }
+    .hover-raise:hover { transform: translateY(-3px); }
+
+    /* Confetti (simple CSS burst) */
+    .confetti { position: fixed; pointer-events: none; inset: 0; overflow: hidden; z-index: 9999; }
+    .confetti span { position: absolute; width: 8px; height: 14px; border-radius: 2px; opacity: 0; animation: drop 1200ms ease-out forwards; }
+    @keyframes drop {
+      0% { transform: translateY(-20vh) rotate(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+    }
+
+    /* Audio prompt */
+    .audio-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; backdrop-filter: blur(6px); }
+    .audio-bar button { border-radius: 999px; padding: 10px 14px; }
+
+  </style>
+</head>
+<body>
+  <!-- Theme root wrapper for toggling -->
+  <div id="app" data-theme="light">
+
+    <header class="hero" role="banner">
+      <div class="topbar">
+        <div class="brand">✨The Grand Celebration✨</div>
+        <div class="actions">
+          <button id="themeToggle" class="btn btn-ghost" aria-pressed="false" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-circle-half-stroke"></i> Theme
+          </button>
+          <a href="#rsvp" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> RSVP</a>
+        </div>
+      </div>
+
+      <div class="hero-content container">
+        <div class="kicker">You're Invited</div>
+        <h1 class="title">Abi's 21st Birthday Bash</h1>
+        <p class="muted" style="max-width: 60ch">Join us for an unforgettable evening filled with music, laughter, and memories as we celebrate in style. Dress code: cocktail chic ✨</p>
+
+        <div class="meta" aria-label="Event details">
+          <div><i class="fa-regular fa-calendar"></i> <strong>Date:</strong> 15 October 2025</div>
+          <div><i class="fa-regular fa-clock"></i> <strong>Time:</strong> 6:30 PM – 10:30 PM</div>
+          <div><i class="fa-solid fa-user"></i> <strong>Host:</strong> Abi & Family</div>
+          <div><i class="fa-solid fa-location-dot"></i> <strong>Venue:</strong> Skyview Terrace, Chennai</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary hover-raise" href="#rsvp"><i class="fa-solid fa-ticket"></i> Confirm Attendance</a>
+          <a class="btn btn-ghost hover-raise" href="#location"><i class="fa-solid fa-map"></i> View Location</a>
+        </div>
+
+        <div class="container" style="padding: 24px 0 0">
+          <div class="chip"><i class="fa-regular fa-hourglass-half"></i> Countdown to party</div>
+        </div>
+        <div class="container" style="padding: 12px 0 0">
+          <div id="countdown" class="countdown" aria-live="polite"></div>
+        </div>
+
+        <div style="position:absolute; bottom:16px; left:4vw;">
+          <div class="audio-bar">
+            <button id="playMusic" class="btn btn-primary" aria-label="Play event music"><i class="fa-solid fa-play"></i></button>
+            <span>Vibe check: Play background music</span>
+          </div>
+        </div>
+        <audio id="bgm" preload="auto">
+          <!-- Replace with your music file -->
+          <source src="https://cdn.pixabay.com/download/audio/2023/09/12/audio_5b7e0a60b1.mp3?filename=summer-ambient-164904.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    </header>
+
+    <main>
+      <!-- About / Description -->
+      <section id="about">
+        <div class="container grid-2">
+          <article class="card">
+            <h2 class="section-title">Event Description</h2>
+            <p>
+              Get ready for a night under the stars! We’re bringing together friends and family for a cozy rooftop celebration with live beats, a photo corner, and cake-cutting at 8 PM. Come early to catch the sunset and raise a toast.
+            </p>
+            <ul>
+              <li>Welcome drinks & mocktail bar</li>
+              <li>Live DJ set + requests</li>
+              <li>Photo booth & instant prints</li>
+            </ul>
+          </article>
+
+          <aside class="card">
+            <h2 class="section-title">Quick Info</h2>
+            <p class="muted">Save the details and share with friends.</p>
+            <div class="meta">
+              <div><i class="fa-regular fa-calendar"></i> Wed, 15 Oct 2025</div>
+              <div><i class="fa-regular fa-clock"></i> 6:30 PM – 10:30 PM</div>
+              <div><i class="fa-solid fa-shirt"></i> Dress: Cocktail Chic</div>
+              <div><i class="fa-solid fa-gift"></i> Gifts: Your presence is the best gift!</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Agenda -->
+      <section id="agenda">
+        <div class="container">
+          <h2 class="section-title">Agenda</h2>
+          <div class="agenda">
+            <div class="item"><strong>6:30 PM</strong><br><span class="muted">Welcome & check‑in</span></div>
+            <div class="item"><strong>7:00 PM</strong><br><span class="muted">DJ & dance floor opens</span></div>
+            <div class="item"><strong>8:00 PM</strong><br><span class="muted">Cake‑cutting ceremony</span></div>
+            <div class="item"><strong>8:30 PM</strong><br><span class="muted">Dinner is served</span></div>
+            <div class="item"><strong>9:30 PM</strong><br><span class="muted">Games & photo time</span></div>
+            <div class="item"><strong>10:15 PM</strong><br><span class="muted">Closing toast</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Location -->
+      <section id="location">
+        <div class="container grid-2">
+          <div class="card">
+            <h2 class="section-title">Venue & Map</h2>
+            <p class="muted">Skyview Terrace, 5th Avenue, Chennai, Tamil Nadu</p>
+            <div class="map-wrap hover-raise">
+              <!-- Replace the src with your actual venue coordinates/place ID -->
+              <iframe title="Google Map" loading="lazy" allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0162738112204!2d80.24327357510119!3d12.97024228733764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267f4b4a4a9f1%3A0x9e6b31b0dd1a4e6c!2sSky%20Garden!5e0!3m2!1sen!2sin!4v1699999999999"></iframe>
+            </div>
+            <p style="margin-top: 12px"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://maps.google.com">Open in Google Maps</a></p>
+          </div>
+          <div class="card">
+            <h2 class="section-title">What to Expect</h2>
+            <p>Cozy lighting, rooftop breeze, and a view of the city skyline. If you plan to bring friends, please RSVP for each guest so we can plan seating and food.</p>
+            <p class="muted">Parking available on‑site. Accessible lift to terrace level.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP -->
+      <section id="rsvp">
+        <div class="container grid-2">
+          <div class="card">
+            <h2 class="section-title">RSVP</h2>
+            <p class="muted">Kindly RSVP by <strong>10 October 2025</strong>. You’ll receive a confirmation email.</p>
+            <form class="rsvp" onsubmit="handleRSVP(event)" aria-label="RSVP form">
+              <div class="row">
+                <div>
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="name@example.com" required />
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="guests">No. of Guests</label>
+                  <select id="guests" name="guests">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="attendance">Will you attend?</label>
+                  <select id="attendance" name="attendance">
+                    <option value="Yes">Yes</option>
+                    <option value="Maybe">Maybe</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label for="message">Message (optional)</label>
+                <textarea id="message" name="message" rows="4" placeholder="Anything we should know? Allergies, song requests, etc."></textarea>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
+                <button type="submit" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Send RSVP</button>
+                <a class="btn" style="border-color: var(--border);" href="mailto:abi@example.com?subject=RSVP%20-%20Abi%27s%20Birthday">RSVP via Email</a>
+              </div>
+              <p id="rsvpStatus" class="muted" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="card">
+            <h2 class="section-title">Need Help?</h2>
+            <p class="muted">Questions about directions, parking, or plus‑ones? Ping us anytime.</p>
+            <p>
+              <a class="btn hover-raise" href="tel:+919000000000"><i class="fa-solid fa-phone"></i> Call Host</a>
+              <a class="btn hover-raise" href="https://wa.me/919000000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© <span id="year"></span> Abi's Celebration • Built with HTML, CSS & JS • <a href="#" id="shareLink">Share Invite</a></p>
+      </div>
+    </footer>
+
+    <!-- Confetti container -->
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    // ===============
+    // Theme Switcher
+    // ===============
+    const root = document.getElementById('app');
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      toggleBtn.setAttribute('aria-pressed', String(next === 'dark'));
+    });
+
+    // ===============
+    // Countdown Timer
+    // Set your event date/time here (local time)
+    // ===============
+    const countdownEl = document.getElementById('countdown');
+    const eventDate = new Date('2025-10-15T18:30:00+05:30'); // 15 Oct 2025, 6:30 PM IST
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    function renderCountdown(diff) {
+      const total = Math.max(0, diff);
+      const days = Math.floor(total / (1000*60*60*24));
+      const hours = Math.floor((total % (1000*60*60*24)) / (1000*60*60));
+      const mins = Math.floor((total % (1000*60*60)) / (1000*60));
+      const secs = Math.floor((total % (1000*60)) / 1000);
+
+      countdownEl.innerHTML = `
+        <div class="timebox"><div class="num">${days}</div><div class="lbl">Days</div></div>
+        <div class="timebox"><div class="num">${pad(hours)}</div><div class="lbl">Hours</div></div>
+        <div class="timebox"><div class="num">${pad(mins)}</div><div class="lbl">Minutes</div></div>
+        <div class="timebox"><div class="num">${pad(secs)}</div><div class="lbl">Seconds</div></div>
+      `;
+    }
+
+    function tick() {
+      const now = new Date();
+      renderCountdown(eventDate - now);
+      if (eventDate - now <= 0) {
+        clearInterval(timer);
+        countdownEl.innerHTML = '<div class="chip"><i class="fa-regular fa-calendar-check"></i> It\'s party time! 🎉</div>';
+      }
+    }
+    const timer = setInterval(tick, 1000); tick();
+
+    // ===============
+    // RSVP Handler (non-backend)
+    // ===============
+    const statusEl = document.getElementById('rsvpStatus');
+    function handleRSVP(e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+      statusEl.textContent = 'Sending…';
+
+      // Simulate sending + show confetti
+      setTimeout(() => {
+        statusEl.textContent = `Thanks, ${data.name}! We\'ve noted your RSVP (${data.attendance}). A confirmation email will follow.`;
+        launchConfetti();
+        // Optional: Also open mail client pre-filled
+        const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nGuests: ${data.guests}\nAttendance: ${data.attendance}\nMessage: ${data.message || ''}`);
+        window.open(`mailto:abi@example.com?subject=RSVP%20-%20Abi%27s%20Birthday&body=${body}`, '_blank');
+        e.currentTarget.reset();
+      }, 700);
+    }
+
+    // ===============
+    // Lightweight Confetti (CSS‑driven)
+    // ===============
+    const confetti = document.getElementById('confetti');
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+    function launchConfetti() {
+      for (let i = 0; i < 80; i++) {
+        const piece = document.createElement('span');
+        const hue = Math.floor(rand(0,360));
+        piece.style.left = rand(0, 100) + 'vw';
+        piece.style.top = '-10vh';
+        piece.style.background = `hsl(${hue} 80% 60%)`;
+        piece.style.transform = `translateY(${rand(-40, -10)}vh)`;
+        piece.style.animationDelay = rand(0, 300) + 'ms';
+        piece.style.animationDuration = rand(900, 1600) + 'ms';
+        confetti.appendChild(piece);
+        setTimeout(() => piece.remove(), 1800);
+      }
+    }
+
+    // ===============
+    // Background Music (requires user gesture)
+    // ===============
+    const playBtn = document.getElementById('playMusic');
+    const audio = document.getElementById('bgm');
+    let playing = false;
+    playBtn.addEventListener('click', async () => {
+      try {
+        if (!playing) { await audio.play(); playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; playing = true; }
+        else { audio.pause(); playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; playing = false; }
+      } catch (e) { console.warn('Audio play blocked:', e); }
+    });
+
+    // ===============
+    // Share (Web Share API fallback)
+    // ===============
+    const shareLink = document.getElementById('shareLink');
+    shareLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const shareData = { title: document.title, text: 'Join me at Abi\'s Birthday Bash!', url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch(_){}
+      } else {
+        navigator.clipboard.writeText(shareData.url);
+        alert('Invite link copied to clipboard!');
+      }
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
